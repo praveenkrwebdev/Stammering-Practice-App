@@ -263,18 +263,18 @@
 
       <div class="player" style="width:100%; justify-content:space-between;">
         <div style="display:flex; gap:12px; align-items:center;">
-          <div id="speakBtn" class="circle" title="Pronounce (click)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M11 5v14a1 1 0 0 1-1.6.8L5.4 16H3a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1h2.4l4-3.8A1 1 0 0 1 11 5z" stroke="#9feffc" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+          <!-- <div id="speakBtn" class="circle" title="Pronounce (click)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M11 5v14a1 1 0 0 1-1.6.8L5.4 16H3a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1h2.4l4-3.8A1 1 0 0 1 11 5z" stroke="#9feffc" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div> -->
           <div style="display:flex;flex-direction:column;align-items:flex-start;">
             <div id="hintText" class="small-muted">Word outlines fill left → right — speak as it fills.</div>
             <div id="wordCount" class="small-muted">Words: 0</div>
           </div>
         </div>
 
-        <div style="display:flex; gap:8px; align-items:center;">
+        <!-- <div style="display:flex; gap:8px; align-items:center;">
           <div id="prevBtn" class="circle" title="Previous">‹</div>
           <div id="playFab" class="circle primary" title="Play/Pause">▶</div>
           <div id="nextFab" class="circle" title="Next">›</div>
-        </div>
+        </div> -->
       </div> 
 
 
@@ -284,13 +284,13 @@
 </div>
 
 <!-- bottom nav for app feel -->
-<div class="app-nav" aria-hidden="false">
+<!-- <div class="app-nav" aria-hidden="false">
   <div class="nav-inner">
     <button class="nav-btn active">Practice</button>
     <button class="nav-btn">History</button>
     <button class="nav-btn">Settings</button>
   </div>
-</div>
+</div> -->
 
 <script>
 /* ----------------------------
@@ -642,36 +642,13 @@ function displayWord(text){
 }
 
 /* speak current word (Web Speech API) */
-// function speakCurrent(){
-//   const textEl = wordBoxInner.querySelector('.word');
-//   if(!textEl) return;
-//   const utter = new SpeechSynthesisUtterance(textEl.textContent);
-//   utter.rate = 0.95;
-//   utter.pitch = 1;
-//   speechSynthesis.cancel();
-//   speechSynthesis.speak(utter);
-// }
-
-  function speakCurrent() {
-  if (!('speechSynthesis' in window)) {
-    console.error('Speech Synthesis API not supported.');
-    return;
-  }
-
-  const textEl = document.querySelector('#wordBoxInner .word'); // make sure your selector is correct
-  if (!textEl) {
-    console.warn('No word element found.');
-    return;
-  }
-
+function speakCurrent(){
+  const textEl = wordBoxInner.querySelector('.word');
+  if(!textEl) return;
   const utter = new SpeechSynthesisUtterance(textEl.textContent);
   utter.rate = 0.95;
   utter.pitch = 1;
-
-  // Cancel any ongoing speech
   speechSynthesis.cancel();
-
-  // Speak the text
   speechSynthesis.speak(utter);
 }
 
