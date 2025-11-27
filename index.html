@@ -651,15 +651,15 @@ function speakCurrent(){
 }
 
 /* reflect UI play/pause */
-// function reflectPlayState(){
-//   if(isPlaying){
-//     playBtn.textContent = '▶ Playing';
-//     playFab.textContent = '⏸';
-//   } else {
-//     playBtn.textContent = '▶ Play';
-//     playFab.textContent = '▶';
-//   }
-// }
+function reflectPlayState(){
+  if(isPlaying){
+    playBtn.textContent = '▶ Playing';
+    playFab.textContent = '⏸';
+  } else {
+    playBtn.textContent = '▶ Play';
+    playFab.textContent = '▶';
+  }
+}
 
 /* ----------------------------
   Event hooks
@@ -678,9 +678,9 @@ pauseBtn.addEventListener('click', pauseSequence);
 nextBtn.addEventListener('click', function(){ nextWord(); if(isPlaying){ /* restart interval so timing consistent */ pauseSequence(); playSequence(); } });
 resetBtn.addEventListener('click', resetAll);
 
-// playFab.addEventListener('click', function(){
-//   if(isPlaying) pauseSequence(); else { if(!currentList || currentList.length===0) startPractice(); else playSequence(); }
-// });
+playFab.addEventListener('click', function(){
+  if(isPlaying) pauseSequence(); else { if(!currentList || currentList.length===0) startPractice(); else playSequence(); }
+});
 nextFab.addEventListener('click', function(){ nextWord(); });
 prevBtn.addEventListener('click', function(){ prevWord(); });
 
