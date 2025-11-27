@@ -642,13 +642,36 @@ function displayWord(text){
 }
 
 /* speak current word (Web Speech API) */
-function speakCurrent(){
-  const textEl = wordBoxInner.querySelector('.word');
-  if(!textEl) return;
+// function speakCurrent(){
+//   const textEl = wordBoxInner.querySelector('.word');
+//   if(!textEl) return;
+//   const utter = new SpeechSynthesisUtterance(textEl.textContent);
+//   utter.rate = 0.95;
+//   utter.pitch = 1;
+//   speechSynthesis.cancel();
+//   speechSynthesis.speak(utter);
+// }
+
+  function speakCurrent() {
+  if (!('speechSynthesis' in window)) {
+    console.error('Speech Synthesis API not supported.');
+    return;
+  }
+
+  const textEl = document.querySelector('#wordBoxInner .word'); // make sure your selector is correct
+  if (!textEl) {
+    console.warn('No word element found.');
+    return;
+  }
+
   const utter = new SpeechSynthesisUtterance(textEl.textContent);
   utter.rate = 0.95;
   utter.pitch = 1;
+
+  // Cancel any ongoing speech
   speechSynthesis.cancel();
+
+  // Speak the text
   speechSynthesis.speak(utter);
 }
 
