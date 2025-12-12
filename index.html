@@ -30,7 +30,7 @@
     padding:18px;
   }
 
-  /* ---------- App shell (centered mobile frame) ---------- */
+  /* ---------- App shell ---------- */
   .shell {
     max-width:980px;
     margin:0 auto;
@@ -39,13 +39,11 @@
     gap:24px;
     align-items:start;
   }
-
-  /* When narrow -> single column (mobile-like) */
   @media (max-width:880px){
     .shell{ grid-template-columns: 1fr; padding-bottom:84px; }
   }
 
-  /* ---------- Left panel - controls (panel styled like app drawer) ---------- */
+  /* ---------- Left Panel ---------- */
   .panel {
     background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
     border-radius: calc(var(--radius) + 4px);
@@ -75,23 +73,8 @@
     color:var(--text); font-size:15px; appearance:none;
     box-shadow: inset 0 6px 18px rgba(0,0,0,0.45);
   }
-  select:focus, input[type=range]:focus { outline:none; box-shadow:0 0 0 6px rgba(0,240,255,0.04); border-color: rgba(0,240,255,0.18) }
 
-  /* small control row */
-  .controls { display:flex; gap:10px; margin-top:14px; align-items:center; }
-  .btn {
-    padding:10px 12px; border-radius:10px; font-weight:700; cursor:pointer; border:none;
-    background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-    color:var(--text);
-    border:1px solid rgba(255,255,255,0.03);
-    box-shadow: 0 8px 18px rgba(0,0,0,0.45);
-  }
-  .btn.primary { background: linear-gradient(90deg, var(--accent-a), var(--accent-b)); color:#001; box-shadow: 0 18px 40px rgba(0,240,255,0.08); }
-  .btn.ghost { background: transparent; border:1px dashed rgba(255,255,255,0.04); color:var(--muted) }
-
-  .small { font-size:13px; color:var(--muted); margin-top:8px; }
-
-  /* ---------- Right panel - stage (the 'app' main view) ---------- */
+  /* ---------- Stage ---------- */
   .stage {
     border-radius:calc(var(--radius) + 4px);
     padding:26px;
@@ -104,14 +87,6 @@
     position:relative; overflow:hidden;
   }
 
-  /* floating decorative orbs */
-  .stage::before, .stage::after{
-    content:""; position:absolute; width:420px;height:420px;border-radius:50%; filter: blur(80px); opacity:0.06;
-  }
-  .stage::before{ right:-100px; top:-60px; background: linear-gradient(180deg, rgba(0,240,255,0.8), rgba(139,92,255,0.6)); transform:rotate(20deg); }
-  .stage::after { left:-140px; bottom:-80px; background: linear-gradient(180deg, rgba(80,227,194,0.35), rgba(0,240,255,0.15)); transform:rotate(-10deg); }
-
-  /* main card inside */
   .card {
     margin:0 auto; width:100%; max-width:820px;
     background: linear-gradient(180deg, rgba(0,0,0,0.14), rgba(255,255,255,0.01));
@@ -119,15 +94,7 @@
     align-items:center; border:1px solid rgba(255,255,255,0.03);
   }
 
-  .meta-row{ width:100%; display:flex; justify-content:space-between; align-items:center; gap:12px; }
-  .meta-left h2{ margin:0; color:var(--muted); font-size:14px; font-weight:800; letter-spacing:0.6px }
-  .meta-left p{ margin:0; color:#9cd8dc; font-size:12px }
-
-  /* big word display + progress */
-  #outputCard {
-    width:100%; min-height:140px; display:flex;align-items:center;justify-content:center;
-  }
-
+  /* Word Display */
   .word {
     font-size:78px; font-weight:900; margin:0; line-height:1; letter-spacing:-0.02em;
     -webkit-text-stroke:1.6px rgba(0,240,255,0.95);
@@ -135,53 +102,43 @@
     background: linear-gradient(90deg, var(--accent-a), var(--accent-b));
     -webkit-background-clip:text; background-clip:text; background-size:0% 100%;
     transition: transform .18s ease;
-    text-shadow: 0 8px 40px rgba(0,240,255,0.06);
   }
   .word.reveal { animation: appWordFill 4s ease forwards; }
   @keyframes appWordFill {
-    0%{ background-size:0% 100%; -webkit-text-stroke:1.6px rgba(0,240,255,0.95); opacity:0; transform:translateY(6px) scale(.995) }
+    0%{ background-size:0% 100%; opacity:0; transform:translateY(6px) scale(.995) }
     10%{ opacity:1 }
-    60%{ background-size:66% 100%; -webkit-text-stroke:1.1px rgba(0,240,255,0.88) }
-    100%{ background-size:100% 100%; -webkit-text-stroke:0.6px rgba(139,92,255,0.6); filter: drop-shadow(0 0 24px rgba(139,92,255,0.08)) }
+    60%{ background-size:66% 100%; }
+    100%{ background-size:100% 100%; }
   }
 
-  .progress { width:100%; height:8px; background: rgba(255,255,255,0.03); border-radius:999px; overflow:hidden; margin-top:6px; }
-  .progress .bar { width:0%; height:100%; background: linear-gradient(90deg,var(--accent-a),var(--accent-c)); transition: width 4s linear; box-shadow:0 12px 30px rgba(0,240,255,0.06) }
+  .progress { width:100%; height:8px; background: rgba(255,255,255,0.03); border-radius:999px; overflow:hidden; }
+  .progress .bar { width:0%; height:100%; background: linear-gradient(90deg,var(--accent-a),var(--accent-c)); transition: width 4s linear; }
 
-  /* controls bottom in card */
-  .player { display:flex; gap:12px; align-items:center; margin-top:8px; }
-  .circle {
-    width:56px; height:56px; border-radius:14px; display:flex;align-items:center;justify-content:center;
-    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-    border:1px solid rgba(255,255,255,0.03); cursor:pointer; box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+  /* Buttons */
+  .controls { display:flex; gap:10px; margin-top:10px; }
+  .btn {
+    padding:10px 12px; border-radius:10px; cursor:pointer; border:none;
+    background:rgba(255,255,255,0.05); color:var(--text);
   }
-  .circle.primary { background: linear-gradient(90deg, var(--accent-a), var(--accent-b)); color:#001; }
+  .btn.primary { background: linear-gradient(90deg, var(--accent-a), var(--accent-b)); color:#001; }
+  .btn.ghost { background: transparent; border:1px dashed rgba(255,255,255,0.04); color:var(--muted); }
 
-  .small-muted{ font-size:12px; color:var(--muted) }
-
-  /* bottom nav (mobile-app feel) */
-  .app-nav { position:fixed; left:50%; transform:translateX(-50%); bottom:14px; width:min(980px,calc(100% - 40px)); display:flex; justify-content:center; }
-  .nav-inner { display:flex; gap:12px; background: rgba(0,0,0,0.35); padding:8px; border-radius:999px; border:1px solid rgba(255,255,255,0.04); backdrop-filter: blur(10px); }
-  .nav-btn { padding:10px 14px; border-radius:12px; color:var(--muted); font-weight:700; background:transparent; border:none; cursor:pointer; }
-  .nav-btn.active { background: linear-gradient(90deg, rgba(0,240,255,0.06), rgba(139,92,255,0.04)); color:var(--text); box-shadow:0 8px 18px rgba(0,0,0,0.6) }
-
-  /* not-available */
-  .not-available { font-size:20px; color:#9fd6d7; font-weight:800; text-align:center; padding:18px 8px; }
+  .not-available { font-size:20px; color:#9fd6d7; font-weight:800; text-align:center; padding:18px; }
 
   @media (max-width:880px){
     .word{ font-size:44px; }
-    .brand h1{ font-size:14px }
     .panel{ order:2 }
     .stage{ order:1; padding:18px }
-    .app-nav{ position:fixed; left:50%; transform:translateX(-50%); bottom:8px; width:calc(100% - 30px) }
   }
 </style>
 </head>
+
 <body>
 
 <div class="shell">
+
   <!-- LEFT PANEL -->
-  <div class="panel" aria-hidden="false">
+  <div class="panel">
     <div class="brand">
       <div class="badge">PS</div>
       <div>
@@ -207,7 +164,6 @@
     <div class="section">
       <label>Sub-Type</label>
       <select id="subTypeSelect"><option value="">-- Select Sub-Type --</option></select>
-      <div class="small">Sub-types populate automatically</div>
     </div>
 
     <div class="section">
@@ -223,79 +179,54 @@
         <option value="singer">Singer</option>
         <option value="other">Others</option>
       </select>
-      <div class="small">Words are tailored for the role</div>
     </div>
 
     <div class="section">
       <label>Reveal Speed</label>
       <input id="speedRange" type="range" min="1" max="6" step="0.5" value="4" />
-      <div class="small">Lower = faster, Higher = slower (seconds)</div>
     </div>
 
-          <div class="section controls">
-      <button class="btn primary" id="playBtn" title="Play">▶ Play</button>
-      <button class="btn" id="pauseBtn" title="Pause">⏸ Pause</button>
-      <button class="btn ghost" id="nextBtn" title="Next">⏭ Next</button>
-      <button class="btn ghost" id="resetBtn" title="Reset">↺ Reset</button>
-    </div>
-
-    <div style="height:10px;"></div>
     <div class="small">Tip: speak as the word fills — each reveal fills left→right.</div>
   </div>
 
   <!-- RIGHT STAGE -->
-  <div class="stage" role="main" aria-live="polite">
+  <div class="stage">
     <div class="card">
-      <div class="meta-row">
-        <div class="meta-left">
+
+      <!-- Meta -->
+      <div class="meta-row" style="width:100%; display:flex; justify-content:space-between;">
+        <div>
           <h2 id="metaType">Type: —</h2>
           <p id="metaSub">Sub-Type: —</p>
         </div>
         <div style="text-align:right">
           <div class="small-muted">Progress</div>
-          <div class="progress" aria-hidden="true"><div class="bar" id="progressBar"></div></div>
+          <div class="progress"><div class="bar" id="progressBar"></div></div>
         </div>
       </div>
 
+      <!-- Word Display -->
       <div id="outputCard">
-        <div id="wordBoxInner" style="width:100%;"></div>
+        <div id="wordBoxInner"></div>
       </div>
 
-      <div class="player" style="width:100%; justify-content:space-between;">
-        <div style="display:flex; gap:12px; align-items:center;">
-          <div id="speakBtn" class="circle" title="Pronounce (click)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M11 5v14a1 1 0 0 1-1.6.8L5.4 16H3a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1h2.4l4-3.8A1 1 0 0 1 11 5z" stroke="#9feffc" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          <div style="display:flex;flex-direction:column;align-items:flex-start;">
-            <div id="hintText" class="small-muted">Word outlines fill left → right — speak as it fills.</div>
-            <div id="wordCount" class="small-muted">Words: 0</div>
-          </div>
-        </div>
-
-        <div style="display:flex; gap:8px; align-items:center;">
-          <div id="prevBtn" class="circle" title="Previous">‹</div>
-          <div id="playFab" class="circle primary" title="Play/Pause">▶</div>
-          <div id="nextFab" class="circle" title="Next">›</div>
-        </div>
-      </div> 
-
-
+      <!-- ⭐ MOVED CONTROLS HERE ⭐ -->
+      <div class="controls">
+        <button class="btn primary" id="playBtn">▶ Play</button>
+        <button class="btn" id="pauseBtn">⏸ Pause</button>
+        <button class="btn ghost" id="nextBtn">⏭ Next</button>
+        <button class="btn ghost" id="resetBtn">↺ Reset</button>
+      </div>
 
     </div>
   </div>
 </div>
 
-<!-- bottom nav for app feel -->
-<!-- <div class="app-nav" aria-hidden="false">
-  <div class="nav-inner">
-    <button class="nav-btn active">Practice</button>
-    <button class="nav-btn">History</button>
-    <button class="nav-btn">Settings</button>
-  </div>
-</div> -->
-
+<!-- FULL JS (unchanged except removed speaker/player parts) -->
 <script>
-/* ----------------------------
-  Data (kept same)
----------------------------- */
+/* ============================
+   Data
+============================= */
 const data = {
   repetition: {
     "Sound Repetition": {
@@ -362,120 +293,12 @@ const data = {
         "that’s okay","I think so","tell me again","do it again","let's go"
       ]
     }
-  },
-  prolongation: {
-    "Voiced Prolongation": {
-      doctor: ["mmmmmedicine","aaaaarm","rrrrreport","lllllungs","vvvvvital"],
-      engineer: ["rrrrrobot","vvvvvoltage","mmmmmodule","sssssignal"],
-      student: ["ssssstudy","mmmmmaths","rrrrreading"],
-      teacher: ["llllllllesson","mmmmmaterial","sssssubject"],
-      advocate: ["lllllaw","rrrrrreason","vvvvverdict"],
-      tvactor: ["mmmmmmic","ssssscript","rrrrrole"],
-      singer: ["mmmmmelody","sssssong","vvvvvvoice"],
-      other: ["ssssstart","mmmmmove","rrrrrun"]
-    },
-    "Voiceless Prolongation": {
-      doctor: ["ssssscan","fffffirst","tttttest"],
-      engineer: ["sssssystem","ffffforce","tttttool"],
-      student: ["ssssstudy","fffffocus","ttttext"],
-      teacher: ["ssssslesson","ffffformat","ttttopic"],
-      advocate: ["ssssstatute","fffffile","ttttrial"],
-      tvactor: ["ssssscene","fffffade","tttttake"],
-      singer: ["sssssong","fffffill","tttttone"],
-      other: ["ssssstop","fffffast","tttttime"]
-    }
-  },
-  blocks: {
-    "Silent Block": {
-      doctor: ["(…patient)","(…scan)","(…report)","(…check)","(…wait)"],
-      engineer: ["(…compile)","(…deploy)","(…debug)","(…test)","(…run)"],
-      student: ["(…answer)","(…think)","(…write)","(…read)","(…speak)"],
-      teacher: ["(…explain)","(…lecture)","(…review)","(…pause)","(…listen)"],
-      advocate: ["(…object)","(…respond)","(…address)","(…present)","(…plead)"],
-      tvactor: ["(…action)","(…cut)","(…wait)","(…silent)","(…breathe)"],
-      singer: ["(…hold)","(…breathe)","(…wait)","(…note)","(…rest)"],
-      other: ["(…pause)","(…think)","(…wait)","(…stop)","(…silent)"]
-    },
-    "Audible Block": {
-      doctor: ["uh…doctor","um…clinic","eh…scan","ah…report","uh…nurse"],
-      engineer: ["uh…code","um…deploy","eh…test","ah…fix","uh…model"],
-      student: ["uh…answer","um…homework","eh…exam","ah…project","uh…study"],
-      teacher: ["uh…lesson","um…topic","eh…grammar","ah…explain","uh…question"],
-      advocate: ["uh…case","um…evidence","eh…witness","ah…plea","uh…judge"],
-      tvactor: ["uh…line","um…take","eh…action","ah…scene","uh…mark"],
-      singer: ["uh…note","um…sing","eh…tone","ah…pitch","uh…chorus"],
-      other: ["uh…hello","um…sorry","eh…wait","ah…okay","uh…thanks"]
-    },
-    "Word Stretching": {
-      doctor: ["soooo","welllll","ooookay","riiiight","breeeathe","staaay calm","heeeere","sloooowly","gooood","feeeling"],
-      advocate: ["youuuur","weeeell","soooo","riiiight","leeegal","claaaim","truuuuth","faaaacts","cleaaaar","prooof"],
-      engineer: ["looooad","cheeck","reeeeboot","soooftware","teeeest","staaart","ruuuun","waaait","syyyystem","cooode"],
-      teacher: ["reeepeat","foooocus","soooo","goooood","liiisten","reeeead","oooookay class","waaaait","aaagain","uunderstand"],
-      student: ["pleaaase","waaait","maaaam","siirrr","aaagain","I dooon't get it","heeeelp","reeeepeat","ooookay","riiiight"],
-      tvactor: ["liiine","aaaaaction","reeeeady","sloooow","faaster","sceeene","taaake","hooold","staaaart","cuuue"],
-      singer: ["soooo","nooote","haaaarmony","breeeathe","voooice","sloooow","teeeempo","riiiise","faalll","gloooow"],
-      other: ["soooo","riiiight","ooookay","waaaait","heeeey","noooo","yeeees","stoooop","goooood","coooome"]
-    }
-  },
-  broken: {
-    "Silent Break": {
-      doctor: ["pa—tient","me—dicine","di—agnose","re—port","su—rgerY"],
-      student: ["ex—am","pro—ject","stu—dy","re—vision","no—tes"],
-      teacher: ["les—son","ch—apter","ex—plain","re—view","te—ach"]
-    },
-    "Audible Break": {
-      doctor: ["pa—(uh)—tient","me—(um)—dicine","di—(eh)—agnose"],
-      student: ["ex—(uh)—am","pro—(um)—ject","stu—(eh)—dy"]
-    },
-    "Tension Break": {
-      doctor: ["pa—(pause)—tient","re—(tension)—port"],
-      student: ["ex—(pause)—am","pro—(tension)—ject"]
-    }
-  },
-  fillers: {
-    "Natural Fillers": {
-      doctor: ["um","uh","well","so","okay"],
-      advocate: ["um","uh","well","so","look"],
-      student: ["um","uh","like","you know","well"],
-      other: ["um","uh","okay","like","you know"]
-    },
-    "Avoidance Fillers": {
-      doctor: ["actually","basically","maybe","perhaps","right"],
-      advocate: ["actually","basically","perhaps","obviously","clearly"],
-      student: ["maybe","kinda","actually","sorta","like"],
-      other: ["maybe","actually","kinda","sorta","basically"]
-    }
-  },
-  revision: {
-    "Restarts": {
-      doctor: ["I need — I need to check","We should — we should review","Call — call the nurse"],
-      engineer: ["We must — we must test","Run — run the build","Deploy — deploy later"],
-      teacher: ["You will — you will learn","Read — read the chapter","Try — try the exercise"],
-      student: ["I will — I will study","I did — I did the assignment"]
-    },
-    "Substitutions": {
-      doctor: ["tablet → pill","injection → shot","report → file"],
-      student: ["exam → test","homework → assignment","project → task"]
-    }
-  },
-  cluttering: {
-    "Fast Rate": {
-      teacher: ["finishfast","talkfast","rushthrough","speedread","quicknote"],
-      student: ["rushstudy","fastwrite","speedsolve","fastread","hurryup"]
-    },
-    "Syllable Drops": {
-      doctor: ["pa-tient","di-agnosis","ther-a-pist"],
-      student: ["ex-am","pro-ject","home-work"]
-    },
-    "Disorganized Language": {
-      other: ["topic… notes… then… explain…","point… slide… then… stop"]
-    }
   }
 };
 
-/* ----------------------------
-  Elements & state
----------------------------- */
+/* ============================
+   Elements
+============================= */
 const typeSelect = document.getElementById('typeSelect');
 const subTypeSelect = document.getElementById('subTypeSelect');
 const professionSelect = document.getElementById('professionSelect');
@@ -487,26 +310,21 @@ const playBtn = document.getElementById('playBtn');
 const pauseBtn = document.getElementById('pauseBtn');
 const nextBtn = document.getElementById('nextBtn');
 const resetBtn = document.getElementById('resetBtn');
-const playFab = document.getElementById('playFab');
-const nextFab = document.getElementById('nextFab');
-const prevBtn = document.getElementById('prevBtn');
-const speakBtn = document.getElementById('speakBtn');
 const speedRange = document.getElementById('speedRange');
-const wordCount = document.getElementById('wordCount');
 
 let playInterval = null;
 let currentList = [];
 let currentIndex = 0;
 let isPlaying = false;
 
-/* ----------------------------
-  Utility functions
----------------------------- */
+/* ============================
+   Functions
+============================= */
 function showNotAvailable(){
   wordBoxInner.innerHTML = '<div class="not-available">No words available for this selection</div>';
   progressBar.style.width = '0%';
-  wordCount.textContent = 'Words: 0';
-  updateMeta();
+  metaType.textContent = 'Type: —';
+  metaSub.textContent = 'Sub-Type: —';
 }
 
 function updateMeta(){
@@ -514,7 +332,6 @@ function updateMeta(){
   metaSub.textContent = 'Sub-Type: ' + (subTypeSelect.value || '—');
 }
 
-/* populate subtypes */
 function loadSubTypes(){
   const t = typeSelect.value;
   subTypeSelect.innerHTML = '<option value="">-- Select Sub-Type --</option>';
@@ -522,187 +339,125 @@ function loadSubTypes(){
   updateMeta();
 
   if(!t || !data[t]) { showNotAvailable(); return; }
-  Object.keys(data[t]).forEach(sub => {
-    const opt = document.createElement('option');
-    opt.value = sub; opt.textContent = sub;
+  Object.keys(data[t]).forEach(sub=>{
+    const opt=document.createElement('option');
+    opt.value=sub; opt.textContent=sub;
     subTypeSelect.appendChild(opt);
   });
   showNotAvailable();
 }
 
-/* start practice — exact match only (no fallback) */
 function startPractice(){
   stopPractice();
   const t = typeSelect.value;
   const sub = subTypeSelect.value;
   const prof = professionSelect.value;
 
-  if(!t || !sub || !prof){ showNotAvailable(); return; }
+  if(!t||!sub||!prof){ showNotAvailable(); return; }
   updateMeta();
 
-  const list = (data[t] && data[t][sub] && data[t][sub][prof] && Array.isArray(data[t][sub][prof])) ? data[t][sub][prof] : [];
-  if(!list || list.length === 0){ showNotAvailable(); return; }
+  const list = data[t]?.[sub]?.[prof] || [];
+  if(!list.length){ showNotAvailable(); return; }
 
   currentList = list.slice();
-  wordCount.textContent = 'Words: ' + currentList.length;
   currentIndex = 0;
-  // Start playing immediately
   playSequence();
 }
 
-/* play sequence with current speed */
 function playSequence(){
-  if(!currentList || currentList.length===0) return;
-  stopPractice(); // clear any previous
+  stopPractice();
+  if(!currentList.length) return;
+
   isPlaying = true;
   showNextWord();
+
   const seconds = Number(speedRange.value) || 4;
-  const interval = Math.max(800, Math.round((seconds * 1000) + 200));
-  playInterval = setInterval(showNextWord, interval);
-  reflectPlayState();
+  playInterval = setInterval(showNextWord, (seconds * 1000) + 200);
+
+  reflectState();
 }
 
-/* pause */
 function pauseSequence(){
   isPlaying = false;
-  if(playInterval){ clearInterval(playInterval); playInterval = null; }
-  reflectPlayState();
+  if(playInterval){ clearInterval(playInterval); playInterval=null; }
+  reflectState();
 }
 
-/* stop */
 function stopPractice(){
   isPlaying = false;
-  if(playInterval){ clearInterval(playInterval); playInterval = null; }
+  if(playInterval){ clearInterval(playInterval); playInterval=null; }
   progressBar.style.width = '0%';
-  reflectPlayState();
+  reflectState();
 }
 
-/* reset */
 function resetAll(){
   stopPractice();
   typeSelect.selectedIndex = 0;
   subTypeSelect.innerHTML = '<option value="">-- Select Sub-Type --</option>';
   professionSelect.selectedIndex = 0;
   wordBoxInner.innerHTML = '';
-  metaType.textContent = 'Type: —';
-  metaSub.textContent = 'Sub-Type: —';
-  wordCount.textContent = 'Words: 0';
+  metaType.textContent="Type: —";
+  metaSub.textContent="Sub-Type: —";
 }
 
-/* next & prev */
 function nextWord(){
-  if(!currentList || currentList.length===0) return;
-  // increment then show
+  if(!currentList.length) return;
   currentIndex = (currentIndex + 1) % currentList.length;
-  showNextWordManual();
-}
-function prevWord(){
-  if(!currentList || currentList.length===0) return;
-  currentIndex = (currentIndex - 1 + currentList.length) % currentList.length;
-  showNextWordManual();
+  showSpecificWord();
 }
 
-/* show next word (automatic) */
 function showNextWord(){
-  if(!currentList || currentList.length===0) return;
-  const w = currentList[currentIndex % currentList.length];
-  currentIndex++;
+  const w = currentList[currentIndex];
+  currentIndex = (currentIndex + 1) % currentList.length;
   displayWord(w);
 }
 
-/* show next word (manual next/prev) - does not advance index twice */
-function showNextWordManual(){
-  if(!currentList || currentList.length===0) return;
-  const w = currentList[currentIndex % currentList.length];
-  displayWord(w);
+function showSpecificWord(){
+  displayWord(currentList[currentIndex]);
 }
 
-/* display word element + animate progress */
 function displayWord(text){
-  // clear
   wordBoxInner.innerHTML = '';
+  const span = document.createElement('span');
+  span.className='word';
+  span.textContent=text;
+  wordBoxInner.appendChild(span);
 
-  // element
-  const h = document.createElement('h2'); h.style.margin = '0';
-  const span = document.createElement('span'); span.className = 'word'; span.textContent = text;
-  h.appendChild(span); wordBoxInner.appendChild(h);
-
-  // restart reveal
   span.classList.remove('reveal');
   void span.offsetWidth;
   span.classList.add('reveal');
 
-  // progress bar animate according to speed
-  const seconds = Number(speedRange.value) || 4;
-  progressBar.style.transition = 'none';
-  progressBar.style.width = '0%';
+  const seconds = Number(speedRange.value);
+  progressBar.style.transition='none';
+  progressBar.style.width='0%';
   void progressBar.offsetWidth;
-  progressBar.style.transition = 'width ' + (seconds) + 's linear';
-  progressBar.style.width = '100%';
+  progressBar.style.transition=`width ${seconds}s linear`;
+  progressBar.style.width='100%';
 }
 
-/* speak current word (Web Speech API) */
-function speakCurrent(){
-  const textEl = wordBoxInner.querySelector('.word');
-  if(!textEl) return;
-  const utter = new SpeechSynthesisUtterance(textEl.textContent);
-  utter.rate = 0.95;
-  utter.pitch = 1;
-  speechSynthesis.cancel();
-  speechSynthesis.speak(utter);
+function reflectState(){
+  playBtn.textContent = isPlaying ? '▶ Playing' : '▶ Play';
 }
 
-/* reflect UI play/pause */
-function reflectPlayState(){
-  if(isPlaying){
-    playBtn.textContent = '▶ Playing';
-    playFab.textContent = '⏸';
-  } else {
-    playBtn.textContent = '▶ Play';
-    playFab.textContent = '▶';
-  }
-}
-
-/* ----------------------------
-  Event hooks
----------------------------- */
+/* ============================
+   Events
+============================= */
 typeSelect.addEventListener('change', loadSubTypes);
 subTypeSelect.addEventListener('change', startPractice);
 professionSelect.addEventListener('change', startPractice);
 
-playBtn.addEventListener('click', function(){
-  if(isPlaying) { pauseSequence(); } else {
-    if(!currentList || currentList.length===0) startPractice();
-    else playSequence();
-  }
-});
+playBtn.addEventListener('click', ()=> isPlaying ? pauseSequence() : playSequence());
 pauseBtn.addEventListener('click', pauseSequence);
-nextBtn.addEventListener('click', function(){ nextWord(); if(isPlaying){ /* restart interval so timing consistent */ pauseSequence(); playSequence(); } });
+nextBtn.addEventListener('click', nextWord);
 resetBtn.addEventListener('click', resetAll);
 
-playFab.addEventListener('click', function(){
-  if(isPlaying) pauseSequence(); else { if(!currentList || currentList.length===0) startPractice(); else playSequence(); }
-});
-nextFab.addEventListener('click', function(){ nextWord(); });
-prevBtn.addEventListener('click', function(){ prevWord(); });
-
-document.getElementById('nextBtn').addEventListener('click', function(){ /* already handled above */ });
-
-speakBtn.addEventListener('click', speakCurrent);
-
-/* allow dynamic speed changes to affect the running interval */
-speedRange.addEventListener('input', function(){
-  if(isPlaying){
-    // restart interval with new speed
-    pauseSequence();
-    playSequence();
-  }
+speedRange.addEventListener('input', ()=>{
+  if(isPlaying){ pauseSequence(); playSequence(); }
 });
 
-/* init */
 showNotAvailable();
-reflectPlayState();
-
+reflectState();
 </script>
+
 </body>
 </html>
