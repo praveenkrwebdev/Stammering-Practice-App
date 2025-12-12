@@ -160,13 +160,15 @@
 .app-footer {
   width: 100%;
   padding: 12px 10px;
-  margin: 40px auto;
-  max-width:980px;
+  margin-top: 40px;
+
   text-align: center;
   color: var(--muted);
   font-size: 13px;
+
   background: rgba(255, 255, 255, 0.015);
   border-top: 1px solid rgba(255, 255, 255, 0.05);
+
   backdrop-filter: blur(6px);
 }
 
@@ -181,9 +183,15 @@
   font-weight: 600;
 }
 
+.app-footer strong {
+  color: var(--text);
+  font-weight: 700;
+}
+
 .app-footer a:hover {
   opacity: 0.8;
 }
+
 
 
 </style>
@@ -625,13 +633,14 @@ showNotAvailable();
 reflectState();
 </script>
 
-<!-- FOOTER -->
 <footer class="app-footer">
   <p>
-    © 2025 • Designed & Developed by 
+    © 2025 • Idea by <strong>Priyanka Sharma</strong> • 
+    Design & Developed by 
     <a href="https://www.artsbypraveen.in/" target="_blank">Praveen Sharma</a>
   </p>
 </footer>
+
 
 
 
