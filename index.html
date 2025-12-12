@@ -548,25 +548,32 @@ function reflectState(){
   playBtn.textContent = isPlaying ? '▶ Playing' : '▶ Play';
 
 
-  /* ============================
-   Auto-scroll to stage on mobile
-============================= */
-function scrollToStage() {
-  if (window.innerWidth <= 880) { // mobile/tablet
-    document.querySelector('.stage').scrollIntoView({ behavior: 'smooth', block: 'start' });
+// Function to scroll to stage on mobile devices
+  function scrollToStage() {
+    if (window.innerWidth <= 880) { // mobile or small tablets
+      document.querySelector('.stage').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   }
-}
 
-// Scroll when sub-type or profession is selected
-subTypeSelect.addEventListener('change', () => {
-  startPractice();
-  scrollToStage();
-});
+  // Scroll when user makes selections
+  const typeSelect = document.getElementById('typeSelect');
+  const subTypeSelect = document.getElementById('subTypeSelect');
+  const professionSelect = document.getElementById('professionSelect');
 
-professionSelect.addEventListener('change', () => {
-  startPractice();
-  scrollToStage();
-});
+  typeSelect.addEventListener('change', () => {
+    loadSubTypes(); // existing function to populate sub-types
+    scrollToStage();
+  });
+
+  subTypeSelect.addEventListener('change', () => {
+    startPractice(); // existing function to load words
+    scrollToStage();
+  });
+
+  professionSelect.addEventListener('change', () => {
+    startPractice(); // existing function to load words
+    scrollToStage();
+  });
 
 
 /* ============================
