@@ -156,32 +156,35 @@
     .stage{ order:2; padding:18px; min-height:300px }
   }
 
-/* -------- Footer -------- */
+/* -------- Improved Footer -------- */
 .app-footer {
   width: 100%;
-  margin-top: 60px;
-  padding: 24px 20px;
+  padding: 12px 10px;
+  margin-top: 40px;
+
   text-align: center;
-
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.04);
-  backdrop-filter: blur(10px);
-  border-radius: 14px;
-
   color: var(--muted);
-  font-size: 14px;
+  font-size: 13px;
 
-  box-shadow: 0 8px 26px rgba(0, 0, 0, 0.4);
+  background: rgba(255, 255, 255, 0.015);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+
+  backdrop-filter: blur(6px);
+}
+
+.app-footer p {
+  margin: 0;
+  padding: 4px 0;
 }
 
 .app-footer a {
-  color: var(--accent-a); /* your blue */
+  color: var(--accent-a);
   text-decoration: none;
   font-weight: 600;
 }
 
 .app-footer a:hover {
-  text-decoration: underline;
+  opacity: 0.8;
 }
 
 
