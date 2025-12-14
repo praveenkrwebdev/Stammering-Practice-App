@@ -495,8 +495,10 @@ let isPlaying = false;
 function updateSpeedIcon(){
   const v = Number(speedRange.value);
 
-  if (v >= 5) speedIcon.textContent = '🐢';      // very slow
+  if (v >= 5.5) speedIcon.textContent = '🐌';      // very slow
+  else if (v >= 5) speedIcon.textContent = '🐢';      // very slow
   else if (v >= 3.5) speedIcon.textContent = '🚶'; // medium
+  else if (v >= 2.5) speedIcon.textContent = '🏃'; // medium
   else speedIcon.textContent = '🐇';             // fast
 } 
   
