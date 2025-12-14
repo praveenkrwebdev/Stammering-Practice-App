@@ -187,31 +187,7 @@
 .app-footer a:hover {
   opacity: 0.8;
 }
-/* -------- Speed Icon -------- */
-.speed-icon {
-  margin-top: 10px;
-  font-size: 26px;
-  text-align: center;
-  filter: drop-shadow(0 0 6px rgba(0,240,255,0.6))
-          drop-shadow(0 0 14px rgba(139,92,255,0.4));
-  animation: speedIdle 2.5s ease-in-out infinite;
-  transition: transform .25s ease, filter .25s ease;
-}
 
-.speed-icon.pulse {
-  animation: speedPulse .45s ease;
-}
-
-@keyframes speedPulse {
-  0%   { transform: scale(0.85); opacity: .6; }
-  60%  { transform: scale(1.2);  opacity: 1; }
-  100% { transform: scale(1); }
-}
-
-@keyframes speedIdle {
-  0%,100% { transform: translateY(0); }
-  50%     { transform: translateY(-3px); }
-}
 
 
 </style>
@@ -267,7 +243,7 @@
     <div class="section">
       <label>Reveal Speed</label>
       <input id="speedRange" type="range" min="1" max="6" step="0.5" value="4" />
-      <div class="speed-icon" id="speedIcon">🚶</div>
+      <div class="small" id="speedIcon">🚶</div>
     </div>
 
     <div class="small">Tip: speak as the word fills — each reveal fills left→right.</div>
@@ -518,20 +494,10 @@ let isPlaying = false;
 
 function updateSpeedIcon(){
   const v = Number(speedRange.value);
-  let icon = '🚶';
 
-  if (v >= 5.5) icon = '🐌';
-  else if (v >= 4.5) icon = '🐢';
-  else if (v >= 3.5) icon = '🚶';
-  else if (v >= 2.5) icon = '🏃';
-  else icon = '🐇';
-
-  speedIcon.textContent = icon;
-
-  // pulse animation
-  speedIcon.classList.remove('pulse');
-  void speedIcon.offsetWidth;
-  speedIcon.classList.add('pulse');
+  if (v >= 5) speedIcon.textContent = '🐢';      // very slow
+  else if (v >= 3.5) speedIcon.textContent = '🚶'; // medium
+  else speedIcon.textContent = '🐇';             // fast
 } 
   
 function showNotAvailable(){
